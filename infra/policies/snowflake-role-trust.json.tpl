@@ -1,0 +1,12 @@
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "SnowflakeExternalVolume",
+      "Effect": "Allow",
+      "Principal": { "AWS": "${SNOWFLAKE_IAM_USER_ARN}" },
+      "Action": "sts:AssumeRole",
+      "Condition": { "StringEquals": { "sts:ExternalId": "${SNOWFLAKE_EXTERNAL_ID}" } }
+    }
+  ]
+}

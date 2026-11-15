@@ -1,0 +1,15 @@
+{
+  "source_month": "2025-01",
+  "mode": "merge",
+  "raw_rows": 3475226,
+  "clean_rows_this_run": 3329565,
+  "rejected_rows": 145661,
+  "rejected_by_reason": {
+    "outside_month": 22,
+    "non_positive_fare": 145515,
+    "dropoff_before_pickup": 124
+  },
+  "trips_clean_rows_for_month_before": 3329565,
+  "trips_clean_rows_for_month_after": 3329565,
+  "snapshot_id": 9104953143788307122
+}

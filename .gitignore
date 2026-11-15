@@ -1,0 +1,28 @@
+# Secrets and local config: never commit these
+.env
+.polaris.env
+*.pem
+*.p8
+.aws/
+
+# Local data and downloads
+data/
+spark-warehouse/
+metastore_db/
+derby.log
+
+# Rendered infra policies (contain account IDs)
+infra/rendered/
+
+# Python
+__pycache__/
+*.pyc
+.pytest_cache/
+.venv/
+venv/
+*.egg-info/
+
+# Editors / OS
+.idea/
+.vscode/
+.DS_Store

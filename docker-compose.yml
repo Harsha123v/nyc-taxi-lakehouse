@@ -1,0 +1,25 @@
+# Apache Polaris (Iceberg REST catalog) running locally.
+#
+# Persistence is in-memory: the catalog entries disappear when the container
+# is removed, but table data and metadata stay in S3. See README "Restarting
+# Polaris" for how to re-register tables.
+#
+# AWS credentials are NOT stored here. `make polaris-up` exports short-lived
+# credentials from your local AWS profile into the shell, and Compose passes
+# them through. Polaris uses them only to assume the nyc-taxi-polaris role.
+services:
+  polaris:
+    # Pin this to the exact tag you tested with (e.g. a 1.x release).
+    image: apache/polaris:latest
+    container_name: polaris
+    ports:
+      - "8181:8181"   # Iceberg REST + management API
+      - "8182:8182"   # health checks
+    environment:
+      POLARIS_BOOTSTRAP_CREDENTIALS: "POLARIS,${POLARIS_ROOT_CLIENT_ID:-root},${POLARIS_ROOT_CLIENT_SECRET:?set POLARIS_ROOT_CLIENT_SECRET in .env}"
+      POLARIS_REALM_CONTEXT_REALMS: "POLARIS"
+      QUARKUS_OTEL_SDK_DISABLED: "true"
+      AWS_REGION: "${AWS_REGION:?set AWS_REGION in .env}"
+      AWS_ACCESS_KEY_ID: "${AWS_ACCESS_KEY_ID:?run via make polaris-up so credentials are exported}"
+      AWS_SECRET_ACCESS_KEY: "${AWS_SECRET_ACCESS_KEY:?run via make polaris-up}"
+      AWS_SESSION_TOKEN: "${AWS_SESSION_TOKEN:-}"

@@ -1,0 +1,10 @@
+[project]
+name = "nyc-taxi-lakehouse"
+version = "0.1.0"
+description = "NYC TLC taxi pipeline: S3 raw -> Iceberg (Polaris) clean + metrics -> Snowflake"
+requires-python = ">=3.10"
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]
+addopts = "-q"

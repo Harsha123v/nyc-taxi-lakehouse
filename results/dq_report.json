@@ -1,0 +1,73 @@
+{
+  "source_month": "2025-01",
+  "passed": true,
+  "checks": [
+    {
+      "name": "trips_clean.trip_id_not_null",
+      "passed": true,
+      "detail": "rows with NULL in any of ['trip_id']: 0",
+      "failing_rows": 0,
+      "extra": {}
+    },
+    {
+      "name": "trips_clean.trip_id_unique",
+      "passed": true,
+      "detail": "duplicate trip_id values: 0 (extra rows: 0)",
+      "failing_rows": 0,
+      "extra": {}
+    },
+    {
+      "name": "trips_clean.required_columns_not_null",
+      "passed": true,
+      "detail": "rows with NULL in any of ['pickup_datetime', 'dropoff_datetime', 'pickup_date', 'pu_location_id', 'do_location_id', 'fare_amount']: 0",
+      "failing_rows": 0,
+      "extra": {}
+    },
+    {
+      "name": "trips_clean.valid_value_ranges",
+      "passed": true,
+      "detail": "rows violating 'fare_amount > 0 AND dropoff >= pickup AND trip_minutes >= 0': 0",
+      "failing_rows": 0,
+      "extra": {}
+    },
+    {
+      "name": "trips_clean.pickup_date_in_month",
+      "passed": true,
+      "detail": "rows violating '2025-01-01 <= pickup_date < 2025-02-01': 0",
+      "failing_rows": 0,
+      "extra": {}
+    },
+    {
+      "name": "trips_clean.pickup_zone_enriched",
+      "passed": true,
+      "detail": "rows violating 'pickup zone found in lookup': 0",
+      "failing_rows": 0,
+      "extra": {}
+    },
+    {
+      "name": "reconciliation.raw_eq_clean_plus_rejected",
+      "passed": true,
+      "detail": "raw 3,475,226 = clean 3,329,565 + rejected 145,661 (difference 0)",
+      "failing_rows": 0,
+      "extra": {
+        "raw": 3475226,
+        "clean": 3329565,
+        "rejected": 145661
+      }
+    },
+    {
+      "name": "trips_rejected.reject_reason_valid",
+      "passed": true,
+      "detail": "rows violating 'reject_reason in ['null_pickup_or_dropoff', 'dropoff_before_pickup', 'non_positive_fare', 'outside_month', 'exact_duplicate']': 0",
+      "failing_rows": 0,
+      "extra": {}
+    },
+    {
+      "name": "daily_zone_metrics.matches_trips_clean",
+      "passed": true,
+      "detail": "trips 3,329,565 vs metrics 3,329,565; revenue 90,330,278.88 vs 90,330,278.88",
+      "failing_rows": 0,
+      "extra": {}
+    }
+  ]
+}

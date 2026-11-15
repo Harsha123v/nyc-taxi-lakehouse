@@ -1,0 +1,6 @@
+step,snapshot_id,row_count
+before change (current),9104953143788307122,3329565
+after DELETE 2025-01-31 (current),7811404466276706208,3202844
+time travel: VERSION AS OF before-snapshot,9104953143788307122,3329565
+time travel: rows on 2025-01-31 AS OF before-snapshot,9104953143788307122,126721
+after rollback_to_snapshot (current),9104953143788307122,3329565
